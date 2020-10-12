@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+{% load fontawesome_5 %}
+{% fontawesome_5_static %}
+
+<html>
+<meta charset="utf-8">
+<head>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<title>GesC DERI</title>
+	{% bootstrap_css %}
+	{% bootstrap_javascript jquery=1 %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style_2.css' %}">
+    <link rel="stylesheet" media="screen and (max-width:1330px)" href="{% static 'css/style_petit_ecran.css' %}">
+</head>
+
+{% block title %}
+
+<body style="background-color: #EFEFEF; font-family: arial;" >
+
+<div class="container-fluid">
+<div class="row">
+    <div class="menu_1">        
+        <div class="navbar navbar-expand-lg nav nav-tabs" style="z-index: 100000; position: fixed; background-color:#CECECE;width: 100%;">
+            <div class="collapse navbar-collapse">
+                <nav>
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-danger" href="{% url 'index'%}"><i class="fas fa-mail-bulk"></i>  Liste des courriers DERI</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'index'%}" style="text-decoration: none; font-size: 18px; margin-left: 200px; color: #000;" id="home"><i class="fas fa-home"></i> Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="" style="text-decoration: none; font-size: 18px;color: #000;" id="stat"><i class="fas fa-chart-line"></i> Voir les statistique</a>
+                        </li>
+                        <div class="nav-link btn-group dropdown" id="params">
+                            <a data-toggle="dropdown" href="" style="text-decoration: none;  font-size: 18px;color: #000;"> <i class="fas fa-tasks"></i> Paramètres</a>
+                                <div class="dropdown-menu" style="background-color: #FDF1B8; padding: 10px; font-size: 18px;">
+                                    <a class="dropdown-item" href="" id="params"><i class="fas fa-people-arrows"></i> Description de la DERI</a>
+                                    <li class="dropdown-divider" ></li>
+                                    <a class="dropdown-item" href="" id="params">Personnel de la DERI</a>
+                                </div>
+                        </div> 
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary btn-small"  href="{% url 'login' %}" style="margin-left: 100px; ">Login <i class="fas fa-sign-in-alt"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-info btn-small"  href="{% url 'register' %}" style="margin-left: 20px; ">Register <i class="fas fa-user-plus"></i></i></a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="menu_2">
+<nav class="navbar navbar-light purple lighten-4 mb-4">
+    <a class="navbar-brand btn btn-danger" href="#" style="color: #FFF;"><i class="fas fa-mail-bulk"></i>  Liste des courriers DERI</a> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
+      aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent15">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'index'%}" style="text-decoration: none; font-size: 18px; color: #000;" id="home"><i class="fas fa-home"></i> Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="" style="text-decoration: none; font-size: 18px;color: #000;" id="stat"><i class="fas fa-chart-line"></i> Voir les statistique</a>
+                </li>
+                <div class="nav-link btn-group dropdown" id="params">
+                    <a data-toggle="dropdown" href="" style="text-decoration: none;  font-size: 18px;color: #000;"> <i class="fas fa-tasks"></i> Paramètres</a>
+                        <div class="dropdown-menu" style="background-color: #FDF1B8; padding: 10px; font-size: 18px;">
+                            <a class="dropdown-item" href="" id="params"><i class="fas fa-people-arrows"></i> Description de la DERI</a>
+                            <li class="dropdown-divider" ></li>
+                            <a class="dropdown-item" href="" id="params">Personnel de la DERI</a>
+                        </div>
+                    </a>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{% url 'login' %}" >Login <i class="fas fa-sign-in-alt"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{% url 'register' %}" >Register <i class="fas fa-user-plus"></i></a>
+                </li>
+            </ul>
+        </div>
+</nav>
+</div>
+
+{% endblock %}
+
+<br>
+
+<center>
+
+{% block content %}
+<div class="row">
+    <div class="col-12 col-md-12 col-xs-12 col-sm-12 col-lg-12 col-xl-12">
+        <div style="width: 80%; background-color: #EF9B0F; color: #FFFF; font-family: arial; opacity: 90%;">
+        <img src="http://info-covid19.gouv.ci/assets/img/logo.png" alt="logo" style="float: right;">
+        <img src="{% static 'image/ins.png'%}" alt="ins" style="width: 90px; float: left;">
+    <center>
+	   <h1 class="entete" style="font-size: 40px; font-family: Cooper Black; ">DIRECTION DES ETUDES, DE LA RECHERCHE ET DE L'INGENIERIE </h1>
+	   <h1 class="entete" style="font-size: 30px; font-family: Forte;font-style: italic;">Plateforme de gestion des courriers de la DERI</h1>
+    </center>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-12 col-xs-12 col-sm-12 col-lg-12">
+        <center>
+            <marquee class="defi" style="font-family: arial black; font-style: italic; background-color: black; color: #FFFFFF; width: 80%;">Cette plateforme est un outil d'aide à la gestion des courriers de la DERI.</marquee>
+        </center>
+    </div>
+</div>
+<br>
+<br>
+<div class="row">
+    <div class="col-12 col-md-12 col-xs-12 col-sm-12 col-lg-12">
+        <center>
+            <div style="width: 24%; background-color: #000000; padding: 20px; color: #FFFFFF; opacity: 70%; margin-left: 300px; box-shadow: 30px 30px 10px #aaa; font-family: Arial Black;">
+            Cette plateforme est dédiée uniquement aux personnes en service à la Direction des Etudes, de la Recherche et de l'Ingéniérie (DERI).
+<br>
+<br>
+            <a href="{% url 'login' %}" class="btn btn-outline-success" id="startbutton">Commencer <i class="fas fa-play-circle"></i></a>	
+            </div>
+        </center>
+    </div>
+</div>
+<br>
+<br>
+<div class="row">
+    <div class="col-12 col-md-12 col-xs-12 col-sm-12 col-lg-12">
+        <h5 style="font-family: Cooper Black; box-shadow: 30px 30px 10px #aaa;">@@ Cette application est la propriété de la DERI et a été conçu par OPOUDJI @@</h5>
+    </div>
+</div>
+
+</center>
+</div>
+
+</body>
+{% endblock %}
+
+
+</html>

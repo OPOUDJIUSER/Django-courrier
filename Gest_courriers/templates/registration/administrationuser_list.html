@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+{% load static %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+{% load fontawesome_5 %}
+{% fontawesome_5_static %}
+
+<html>
+<meta charset="utf-8">
+<head>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+	<title>Administration du Personnel</title>
+	{% bootstrap_css %}
+	{% bootstrap_javascript jquery=1 %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style_2.css' %}">
+    <link rel="stylesheet" media="screen and (max-width:1330px)" href="{% static 'css/style_petit_ecran.css' %}">
+</head>
+
+{% block title %}
+
+<body style="background-color: #EFEFEF; font-family: arial;" >
+
+<div class="container-fluid">
+<div class="row">
+    <div class="menu_1">        
+        <div class="navbar navbar-expand-lg nav nav-tabs" style="z-index: 100000; position: fixed; background-color:#CECECE;width: 100%;">
+            <div class="collapse navbar-collapse">
+                <nav>
+                    <ul class="nav">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-danger" href="{% url 'index'%}"><i class="fas fa-mail-bulk"></i>  Suivi des courriers DERI</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'index'%}" style="text-decoration: none; font-size: 18px; margin-left: 200px; color: #000;" id="home"><i class="fas fa-home"></i> Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="" style="text-decoration: none; font-size: 18px;color: #000;" id="stat"><i class="fas fa-chart-line"></i> Voir les statistique</a>
+                        </li>
+                        <div class="nav-link btn-group dropdown" id="params">
+                            <a data-toggle="dropdown" href="" style="text-decoration: none;  font-size: 18px;color: #000;"> <i class="fas fa-tasks"></i> Paramètres</a>
+                                <div class="dropdown-menu" style="background-color: #FDF1B8; padding: 10px; font-size: 18px;">
+                                    <a class="dropdown-item" href="" id="params"><i class="fas fa-people-arrows"></i> Description de la DERI</a>
+                                    <li class="dropdown-divider" ></li>
+                                    <a class="dropdown-item" href="" id="params">Personnel de la DERI</a>
+                                </div>
+                        </div> 
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-primary btn-small"  href="{% url 'login' %}" style="margin-left: 100px; ">Login <i class="fas fa-sign-in-alt"></i></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-danger btn-small"  href="{% url 'logout' %}" style="margin-left: 20px; ">Logout</a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="menu_2">
+<nav class="navbar navbar-light purple lighten-4 mb-4">
+    <a class="navbar-brand btn btn-danger" href="#" style="color: #FFF;"><i class="fas fa-mail-bulk"></i>  Suivi des courriers DERI</a> 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent15"
+      aria-controls="navbarSupportedContent15" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent15">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'index'%}" style="text-decoration: none; font-size: 18px; color: #000;" id="home"><i class="fas fa-home"></i> Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="" style="text-decoration: none; font-size: 18px;color: #000;" id="stat"><i class="fas fa-chart-line"></i> Voir les statistique</a>
+                </li>
+                <div class="nav-link btn-group dropdown" id="params">
+                    <a data-toggle="dropdown" href="" style="text-decoration: none;  font-size: 18px;color: #000;"> <i class="fas fa-tasks"></i> Paramètres</a>
+                        <div class="dropdown-menu" style="background-color: #FDF1B8; padding: 10px; font-size: 18px;">
+                            <a class="dropdown-item" href="" id="params"><i class="fas fa-people-arrows"></i> Description de la DERI</a>
+                            <li class="dropdown-divider" ></li>
+                            <a class="dropdown-item" href="" id="params">Personnel de la DERI</a>
+                        </div>
+                    </a>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{% url 'login' %}" >Login <i class="fas fa-sign-in-alt"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{% url 'logout' %}" >Logout</a>
+                </li>
+            </ul>
+        </div>
+</nav>
+</div>
+ 
+{% endblock %}
+
+<br>
+
+{% block content %}
+<div class="col-12 col-md-12 col-xs-12 col-sm-12 col-lg-12">
+    <i class="fas fa-users" style="font-size: 100px;"></i>
+        <h1 class="entete">Liste des utilisateurs</h1>
+            <br>
+            <br>
+            <a href="{% url 'administration' %}" class="btn btn-info">Retournez à l'administration</a>
+            <a class="btn btn-primary show-form" href="{% url 'administrationuser_create' %}" style="color: #FFF;">
+                <i class="fas fa-user-plus"></i>
+                Ajouter un utilisateur
+            </a>
+                <br>
+                <br>
+                <table class="table" id="book-table">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Password</th>
+                      <th>Last_login</th>
+                      <th>Is_superuser</th>
+                      <th>Username</th>
+                      <th>First_name</th>
+                      <th>Last_name</th>
+                      <th>Email</th>
+                      <th>Is_staff</th>
+                      <th>Is_active</th>
+                      <th>Date_joined</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                {% for book in object_list %}
+                    <tr>
+                        <td>{{ book.id }}</td>
+                        <td>{{ book.password }}</td>
+                        <td>{{ book.last_login }}</td>
+                        <td>{{ book.is_superuser }}</td>
+                        <td>{{ book.username }}</td>
+                        <td>{{ book.first_name }}</td>
+                        <td>{{ book.last_name }}</td>
+                        <td>{{ book.email }}</td>
+                        <td>{{ book.is_staff }}</td>
+                        <td>{{ book.is_active }}</td>
+                        <td>{{ book.date_joined }}</td>
+
+                        <td>  
+                            <a class="btn btn-warning btn-small" href="user_update/{{book.id}}" style="color: #FFF;">
+                                <i class="fas fa-pencil-alt"></i>
+                            </a>
+                        </td>
+                        <td>  
+                            <a class="btn btn-danger btn-small" href="user_delete/{{book.id}}" style="color: #FFF;">
+                                <i class="fas fa-trash-alt"></i>   
+                            </a>
+                        </td>
+                    </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center bg-warning" >No user</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+            <br>
+            <br>
+            <br>
+<br>
+</div>
+{% endblock %}
+</body>
+</html>

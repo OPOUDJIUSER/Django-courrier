@@ -1,0 +1,15 @@
+.navigation{
+	position: fixed;
+	z-index: 100000;
+	width: 100%;
+}
+a{
+	color: #AFA778;
+}
+a:hover{
+	padding: 5px;
+	border-bottom: solid;
+	border-color: blue;
+	transition-duration: 0.2s;
+
+}

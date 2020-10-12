@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="page-header">Courriers : {{count}} résultats trouvés pour {{query}}</h1>
+  <br>
+  <form method="POST" action="{% url 'book_list_search' %}">
+    {% csrf_token %}
+    <input id="qu" name="q" type="search">
+    <button type="submit" class="btn btn-outline-success">Recherche</button>
+  </form>
+  <br>
+  <a href="{% url 'administration' %}" class="btn btn-info">Retournez à l'administration</a>
+  <button class="btn btn-primary show-form" data-url="{% url 'book_create' %}">
+  <span class="glyphicon glyphicon-plus"></span>
+  Nouveau Courrier
+  </button>
+  <br>
+  <br>
+
+  <table class="table" id="book-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>N° courrier</th>
+        <th>Source</th>
+        <th>Objet</th>
+        <th>Situation</th>
+        <th>Date de reception</th>
+        <th>Date d'enregistrement</th>
+        <th>Commentaire</th>
+        <th>Deadline</th>
+        <th>Id_User</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% include "book_list_3.html" %}
+    </tbody>
+  </table>
+
+  <div class="modal fade" id="modal-book">
+    <div class="modal-dialog">
+      <div class="modal-content"></div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% load fontawesome_5 %}
+{% fontawesome_5_static %}
+{% for book in books %}
+  <tr>
+    <td>{{ book.id }}</td>
+    <td>{{ book.n_courrier }}</td>
+    <td>{{ book.source }}</td>
+    <td>{{ book.objet }}</td>
+    <td>{{ book.situation }}</td>
+    <td>{{ book.date_reception }}</td>
+    <td>{{ book.date_enregistrement }}</td>
+    <td>{{ book.commentaire }}</td>
+    <td>{{ book.deadline }}</td>
+    <td>{{ book.user_id }}</td>
+    <td>  
+      <button class="btn btn-warning show-form-update" data-url="{% url 'book_update' book.id %}">
+        <i class="fas fa-pencil-alt"></i>
+      Modifier 
+      </button>
+    </td>
+    <td>  
+      <button class="btn btn-danger show-form-delete" data-url="{% url 'book_delete' book.id %}">
+        <i class="fas fa-trash-alt"></i>
+      Supprimer 
+      </button>
+    </td>
+  </tr>
+{% empty %}
+  <tr>
+    <td colspan="7" class="text-center bg-warning">No courrier</td>
+  </tr>
+{% endfor %}
